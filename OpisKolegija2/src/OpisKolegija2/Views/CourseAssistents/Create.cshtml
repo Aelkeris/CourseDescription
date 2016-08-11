@@ -1,0 +1,46 @@
+﻿@model OpisKolegija2.Models.CourseAssistents
+
+@{
+    ViewBag.Title = "New Course";
+}
+
+<!--Model koji ide u ovaj glupi view je zapravo najobičnija lista, koja u sebi može imati id i naziv, uopće nebitno.
+    Ono što treba postići je da ovaj view prikazuje model koji ja želim, i nakon toga pokreće akciju u kontroleru koju također ja želim.
+    -->
+
+<h2>@ViewData["Courses"]</h2>
+
+<form asp-controller="CourseAssistents" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Courses.CourseTitle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                 <select asp-for="CourseId" class="form-control">
+                @foreach (var item in ViewBag.v)
+                {
+                    <option value="@item.CourseId">@item.CourseTitle</option>
+                }
+                </select>
+                <span  class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="AssistentId" class="form-control">
+                    @foreach (var item in ViewBag.c)
+                    {
+                        <option value="@item.AssistentId">@item.Assistent</option>
+                    }
+                </select>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>

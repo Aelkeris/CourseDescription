@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OpisKolegija2.Models.CourseLecturers>
+
+@{
+    ViewBag.Title = "Course Lecturers";
+}
+
+<h2>Course Lecturers</h2>
+
+<p>
+    <a asp-controller="CourseLecturers" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Ime predmeta</th>
+        <th>Ime profesora</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Courses.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lecturers.Lecturer)
+            </td>
+            <td>
+                @Html.ActionLink("Obriši Vezu", "Delete", "CourseLecturers", new { _idLecturer = item.LecturerId,_idCourse=item.CourseId }, null)
+            </td>
+        </tr>
+    }
+</table>

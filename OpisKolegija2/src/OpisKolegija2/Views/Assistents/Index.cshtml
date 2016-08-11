@@ -1,0 +1,44 @@
+﻿@model IEnumerable<OpisKolegija2.Models.Assistents>
+
+@{
+    ViewBag.Title = "Assistents";
+}
+<h2>Assistents</h2>
+<p>
+    <a asp-controller="Assistents" asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <tr>
+        <th>Assistent</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Assistent)  
+            </td>
+            <td>
+                @Html.ActionLink("Obriši asistenta","Delete","Assistents",new { id = item.AssistentId },null)
+            </td>
+        </tr>
+    }
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,114 @@
+﻿@model OpisKolegija2.Models.StudentInformations
+
+@{
+    ViewBag.Title = "Studentske informacije";
+}
+
+<h2>@ViewData["StudentInformation"]</h2>
+
+<form asp-controller="StudentInformations" asp-action="Update" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="CourseId" value="@ViewData["id"]" readonly="readonly" hidden="hidden" />
+        <h1>2. Opis kolegija</h1>
+        <hr />
+        <!--Entry 1  CurriculumName-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="StudentTasks" class="col-md-6 control-label">2.7. Obveze studenata:</label>
+                <input asp-for="StudentTasks" value="@ViewBag.StudInfo.StudentTasks" class="form-control" />
+                <span asp-validation-for="StudentTasks" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 2  CourseStatus-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Workload" class="col-md-6 control-label">2.9. Radno opterećenje studenata :</label>
+                <input asp-for="Workload" value="@ViewBag.StudInfo.Workload" class="form-control" />
+                <span asp-validation-for="Workload" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 3  Semester-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="GradingEvaluating" class="col-md-6 control-label">2.10.	Ocjenjivanje i vrjednovanje rada studenata tijekom nastave i na završnom ispitu :</label>
+                <input asp-for="GradingEvaluating" value="@ViewBag.StudInfo.GradingEvaluating" class="form-control" />
+                <span asp-validation-for="GradingEvaluating" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <!-- Entry 4 Ects-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Required1" class="col-md-5 control-label">2.11. Obvezna literatura (OL u kalendaru nastave) :</label>
+                <table>
+                        <tr>
+                            <th class="col-md-1">Red.Br</th>
+                            <th class="col-md-6">Naziv</th> 
+                        </tr>
+                        <tr>
+                            <td class="text-center">1.</td>
+                            <td><input asp-for="Required1" value="@ViewBag.StudInfo.Required1" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">2.</td>
+                            <td><input asp-for="Required2" value="@ViewBag.StudInfo.Required2" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">3.</td>
+                            <td><input asp-for="Required3" value="@ViewBag.StudInfo.Required3" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">4.</td>
+                            <td><input asp-for="Required4" value="@ViewBag.StudInfo.Required4" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">5.</td>
+                            <td><input asp-for="Required5" value="@ViewBag.StudInfo.Required5" class="form-control" /></td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+        <!-- Entry 5 HoursLecture-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Required1" class="col-md-5 control-label">2.12. Dopunska literatura (DL u kalendaru nastave) :</label>
+                <table>
+                    <tr>
+                        <th class="col-md-1">Red.Br</th>
+                        <th class="col-md-6">Naziv</th>
+                    </tr>
+                    <tr>
+                        <td class="text-center">1.</td>
+                        <td><input asp-for="Recommended1" value="@ViewBag.StudInfo.Recommended1" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">2.</td>
+                        <td><input asp-for="Recommended2" value="@ViewBag.StudInfo.Recommended2" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">3.</td>
+                        <td><input asp-for="Recommended3" value="@ViewBag.StudInfo.Recommended3" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">4.</td>
+                        <td><input asp-for="Recommended4" value="@ViewBag.StudInfo.Recommended4" class="form-control" /></td>
+                    </tr>
+                    <tr>
+                        <td class="text-center">5.</td>
+                        <td><input asp-for="Recommended5" value="@ViewBag.StudInfo.Recommended5" class="form-control" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+      
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Upiši" class="btn btn-lg" />
+            </div>
+        </div>
+    </div>
+</form>
+
+

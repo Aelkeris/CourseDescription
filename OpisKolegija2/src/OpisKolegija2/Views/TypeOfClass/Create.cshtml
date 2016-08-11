@@ -1,0 +1,91 @@
+﻿@model OpisKolegija2.Models.TypeofClass
+    @{
+        ViewBag.Title = "Vrsta Predmeta";
+    }
+
+    <h2>@ViewData["TypeofClass"]</h2>
+
+    <form asp-controller="TypeOfClass" asp-action="Create" method="post" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input asp-for="CourseId" value="@ViewData["id"]" readonly="readonly" hidden="hidden"/>
+            <h1>2. Opis Kolegija</h1>
+            <hr />
+            <p>2.5.	Vrste izvođenja nastave:</p>
+            <hr />
+
+            <div class="container">
+                
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Lectures)
+                            <label class="col-sm-4" asp-for="@Model.Lectures"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Seminars)
+                            <label class="col-sm-4" asp-for="@Model.Seminars"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Lab)
+                            <label class="col-sm-4" asp-for="@Model.Lab"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Distance)
+                            <label class="col-sm-4" asp-for="@Model.Distance"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Mixed)
+                            <label class="col-sm-4" asp-for="@Model.Mixed"></label>
+                            
+                        </div>
+                      
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Field)
+                            <label class="col-sm-4" asp-for="@Model.Field"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Homework)
+                            <label class="col-sm-4" asp-for="@Model.Homework"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Multimedia)
+                            <label class="col-sm-4" asp-for="@Model.Multimedia"></label>
+                           
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Exercises)
+                            <label class="col-sm-4" asp-for="@Model.Exercises"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            @Html.CheckBoxFor(Model => Model.Mentoring)
+                            <label class="col-sm-4" asp-for="@Model.Mentoring"></label>
+                            
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                @Html.CheckBoxFor(Model => Model.OtherCheck)
+                            </span>
+                            <input asp-for="@Model.OtherText" class="form-control" placeholder="(Ostalo Upisati)">
+                        </div>
+                    </div>
+                    
+           
+        </div><hr />
+                <div class="form-group">
+                    <div class="col-md-offset-5 col-md-10">
+                        <input type="submit" value="Upiši" class="btn btn-lg" />
+                    </div>
+                </div>
+                </div>
+            </div>
+    </form>

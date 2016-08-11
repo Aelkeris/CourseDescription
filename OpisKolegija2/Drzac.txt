@@ -1,0 +1,30 @@
+Studijski program (struèni, specijalistièki diplomski struèni studij) : @item.CurriculumName</li>
+        <li>Status kolegija : @item.CourseStatus</li>
+        <li>Semestar : @item.Semester</li>
+        <li>(Bodovna Vrijednost)Ects : @item.Ects</li>
+        <li>Naèin izvoðenja nastave (broj sati P+V+S+e-uèenje) : @item.HoursLecture + @item.HoursLab + @item.HoursSeminar</li>
+        <li>Kratica kolegija : @item.ShortName</li>
+        <li>Šifra kolegija : @item.CourseCode</li>
+        <li>Ciljevi kolegija : @item.Description</li>
+        <li>Uvjeti za polaganje kolegija i ulazne kompetencije koje su potrebne za kolegij, 
+    korelativnost i korespodentnost s drugim kolegijima : @item.Prerequisites</li>
+        <li>Oèekivani ishodi uèenja na razini kolegija (4-10 ishoda uèenja) : @item.LearningOutcomes</li>
+        <li>Komentari : @item.Comments</li>
+
+
+		[HttpGet("Login")]
+[AllowAnonymous]
+public IActionResult Login(string returnUrl = "")
+{
+    this.ViewData["ReturnUrl"] = returnUrl;
+    return this.View();
+}
+
+[HttpPost("Login")]
+[AllowAnonymous]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Login(SignInViewModel model, string returnUrl = "")
+{
+    // Do stuff
+    return this.View(new SignInViewModel { UserName = model.UserName });
+}

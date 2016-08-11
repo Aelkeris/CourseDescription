@@ -1,0 +1,150 @@
+﻿@model OpisKolegija2.Models.Details
+@{
+    ViewBag.Title = "Details About Course Weeks";
+}
+
+<h2>@ViewData["Details"]</h2>
+
+<form asp-controller="Details" asp-action="Update" method="post" class="form-horizontal" role="form">
+    <div class="form-group">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="CourseId" value="@ViewData["id"]" readonly="readonly" hidden="hidden"/>
+        <h1>2. Opis Kolegija</h1>
+        
+        <hr />
+        <p>2.1.	Sadržaj kolegija detaljno razrađen prema satnici nastave (kalendar nastave)</p>
+        <table class="table">
+            <tr>
+                <th class="col-md-2">Tjedan</th>
+                <th class="col-md-6">Teme i ishodi</th>
+                <th class="col-md-2">Satnica</th>
+            </tr>
+            <tr>
+                <td rowspan="3"><input asp-for="WeekNo" type="number" class="form-control" min="1" max="15" placeholder="Upišite broj tjedna kojeg želite promijeniti"/></td>
+                <td><input asp-for="Description1" class="form-control" /></td>
+                <td rowspan="3"><input asp-for="Hours" type="number" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td><input asp-for="Description2" class="form-control" /></td>
+            </tr>
+            <tr>
+                <td><input asp-for="Description3" class="form-control" /></td>
+            </tr>
+        </table>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Upiši" class="btn btn-lg" />
+            </div>
+        </div>
+    </div>
+</form>
+<div class="form-group  center-block">
+    <table class="table-bordered">
+        <tr>
+            <th class="col-md-2">Tjedan</th>
+            <th class="col-md-6">Teme i ishodi</th>
+            <th class="col-md-2">Satnica</th>
+        </tr>
+
+        @foreach (var item in ViewBag.DL)
+        {
+
+            <tr>
+                <td rowspan="3">@item.WeekNo</td>
+                <td>@item.Description1</td>
+                <td rowspan="3">@item.Hours</td>
+            </tr>
+            <tr>
+                <td>@item.Description2</td>
+            </tr>
+            <tr>
+                <td>@item.Description3</td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+  <!--Entry 1  Week Number--
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="WeekNo" class="col-md-5 control-label">1.4. Studijski program (stručni, specijalistički diplomski stručni studij):</label>
+                <input asp-for="WeekNo" type="number" class="form-control" min="1" max="15"/>
+                <span asp-validation-for="WeekNo" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 2  Description1--
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Description1" class="col-md-5 control-label">1.5. Status kolegija :</label>
+                <input asp-for="Description1" class="form-control" />
+                <span asp-validation-for="Description1" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 3  Description2--
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Description2" class="col-md-5 control-label">1.6. Semestar :</label>
+                <input asp-for="Description2" class="form-control" />
+                <span asp-validation-for="Description2" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 4 Description3--
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Description3" class="col-md-5 control-label">1.7. (Bodovna Vrijednost)Ects :</label>
+                <input asp-for="Description3" class="form-control" />
+                <span asp-validation-for="Description3" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 5 Hours--
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Hours" class="col-md-5 control-label">1.8. Način izvođenja nastave (broj sati Predavanje) :</label>
+                <input asp-for="Hours" class="form-control" />
+                <span asp-validation-for="Hours" class="text-danger"></span>
+            </div>
+        </div>-->

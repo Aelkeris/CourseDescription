@@ -1,0 +1,129 @@
+﻿@model OpisKolegija2.Models.GeneralInformations
+
+@{
+    ViewBag.Title = "Information about course";
+}
+
+<h2>@ViewData["GeneralInformation"]</h2>
+
+<form asp-controller="GeneralInformations" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>        
+        <input asp-for="CourseId" value="@ViewData["id"]" readonly="readonly" hidden="hidden"/>
+        <h1>1. Opće informacije</h1>
+        <hr />
+        <!--Entry 1  CurriculumName-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="CurriculumName" class="col-md-5 control-label">1.4. Studijski program (stručni, specijalistički diplomski stručni studij):</label>
+                <input asp-for="CurriculumName" class="form-control" />
+                <span asp-validation-for="CurriculumName" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 2  CourseStatus-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="CourseStatus" class="col-md-5 control-label">1.5. Status kolegija :</label>
+                <input asp-for="CourseStatus" class="form-control" />
+                <span asp-validation-for="CourseStatus" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 3  Semester-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Semester" class="col-md-5 control-label">1.6. Semestar :</label>
+                <input asp-for="Semester" class="form-control" />
+                <span asp-validation-for="Semester" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 4 Ects-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Ects" class="col-md-5 control-label">1.7. (Bodovna Vrijednost)Ects :</label>
+                <input asp-for="Ects" class="form-control" />
+                <span asp-validation-for="Ects" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 5 HoursLecture-->
+        <div class="form-group"> 
+            <div class="col-md-10">
+                <label asp-for="HoursLecture" class="col-md-5 control-label">1.8. Način izvođenja nastave (broj sati Predavanje) :</label>
+                <input asp-for="HoursLecture" class="form-control" />
+                <span asp-validation-for="HoursLecture" class="text-danger"></span> 
+            </div>
+            <div class="col-md-10">
+                <label asp-for="HoursLab" class="col-md-5 control-label">(broj sati Vježbe) :</label>
+                <input asp-for="HoursLab" class="form-control" />
+                <span asp-validation-for="HoursLab" class="text-danger"></span>
+            </div>
+            <div class="col-md-10">
+                <label asp-for="HoursSeminar" class="col-md-5 control-label">(broj sati Seminara) :</label>
+                <input asp-for="HoursSeminar" class="form-control" />
+                <span asp-validation-for="HoursSeminar" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 8 ShortName-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="ShortName" class="col-md-5 control-label">1.9. Kratica kolegija :</label>
+                <input asp-for="ShortName" class="form-control" />
+                <span asp-validation-for="ShortName" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 9 CourseCode-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="CourseCode" class="col-md-5 control-label">1.10. Šifra kolegija :</label>
+                <input asp-for="CourseCode" class="form-control" />
+                <span asp-validation-for="CourseCode" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <h1>2. Opis kolegija</h1>
+        <hr />
+        <!-- Entry 10 Description-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="CourseGoals" class="col-md-5 control-label">2.1. Ciljevi kolegija :</label>
+                <input asp-for="CourseGoals" class="form-control" />
+                <span asp-validation-for="CourseGoals" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 11 Prerequisites-->    
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Prerequisites" class="col-md-5 control-label">
+                        2.2. Uvjeti za polaganje kolegija i ulazne kompetencije koje su potrebne za kolegij,
+                        korelativnost i korespodentnost s drugim kolegijima 
+                </label>
+                <input asp-for="Prerequisites" class="form-control" />
+                <span asp-validation-for="Prerequisites" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 12 LearningOutcomes-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="LearningOutcomes" class="col-md-5 control-label">2.3. Očekivani ishodi učenja na razini kolegija (4-10 ishoda učenja) :</label>
+                <input asp-for="LearningOutcomes" class="form-control" />
+                <span asp-validation-for="LearningOutcomes" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 13 Comments-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Comments" class="col-md-5 control-label">2.6. Komentari :</label>
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+                <div class="col-md-offset-5 col-md-10">
+                    <input type="submit" value="Upiši" class="btn btn-lg" />
+                </div>
+            </div>
+    </div>
+</form>
+
+
+       

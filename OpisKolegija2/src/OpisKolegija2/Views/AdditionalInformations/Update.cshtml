@@ -1,0 +1,64 @@
+﻿@model OpisKolegija2.Models.AdditionalInformations
+
+@{
+    ViewBag.Title = "Dodatne informacije";
+}
+
+<h2>@ViewData["AdditionalInformations"]</h2>
+
+<form asp-controller="AdditionalInformations" asp-action="Update" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input asp-for="CourseId" value="@ViewData["id"]" readonly="readonly" hidden="hidden" />
+        <h1>3. Dodatne informacije o kolegiju</h1>
+        <hr />
+        <!--Entry 1  CurriculumName-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Attendance" class="col-md-5 control-label">3.1. Pohađanje nastave:</label>
+                <input asp-for="Attendance" value="@ViewBag.AddInfo.Attendance" class="form-control" />
+                <span asp-validation-for="Attendance" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="ContactingTeacher" class="col-md-5 control-label">3.2. Kontaktiranje s nastavnikom :</label>
+                <input asp-for="ContactingTeacher" value="@ViewBag.AddInfo.ContactingTeacher" class="form-control" />
+                <span asp-validation-for="ContactingTeacher" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 2  CourseStatus-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="ClassInformation" class="col-md-5 control-label">3.3. Informiranje o kolegiju :</label>
+                <input asp-for="ClassInformation" value="@ViewBag.AddInfo.ClassInformation" class="form-control" />
+                <span asp-validation-for="ClassInformation" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 3  Semester-->
+        <!-- Entry 5 HoursLecture-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="WrittenWork" class="col-md-5 control-label">3.4. Pisani radovi:</label>
+                <input asp-for="WrittenWork" value="@ViewBag.AddInfo.WrittenWork" class="form-control" />
+                <span asp-validation-for="WrittenWork" class="text-danger"></span>
+            </div>
+        </div>
+        <!-- Entry 4 Ects-->
+        <div class="form-group">
+            <div class="col-md-10">
+                <label asp-for="Other" class="col-md-5 control-label">3.5. Ostalo :</label>
+                <input asp-for="Other" value="@ViewBag.AddInfo.Other" class="form-control" />
+                <span asp-validation-for="Other" class="text-danger"></span>
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-5 col-md-10">
+                <input type="submit" value="Upiši" class="btn btn-lg" />
+            </div>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,52 @@
+﻿@model OpisKolegija2.Models.CLA
+
+@{
+    ViewBag.Title = "New Course";
+}
+
+<h2>@ViewData["Courses"]</h2>
+
+<form asp-controller="Courses" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="CourseTitle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CourseTitle" class="form-control" />
+                <span asp-validation-for="CourseTitle" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="LecturerId" class="col-md-2 control-label">Profesor</label>
+            <div class="col-md-10">
+                <select asp-for="LecturerId" class="form-control">
+                    @foreach (var item in ViewBag.x)
+                    {
+                        <option value="@item.LecturerId">@item.Lecturer</option>
+                    }
+                </select>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="AssistentId" class="col-md-2 control-label">Asistent</label>
+            <div class="col-md-10">
+                <select asp-for="AssistentId" class="form-control">
+                    @foreach (var item in ViewBag.y)
+                    {
+                        <option value="@item.AssistentId">@item.Assistent</option>
+                    }
+                </select>
+                <span class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+

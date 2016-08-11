@@ -1,0 +1,321 @@
+﻿@model OpisKolegija2.Models.AllData
+
+@*ViewBag.AllData.Courses.CourseTitle*@
+<h1>Opis Kolegija</h1>
+<hr/>
+<p>@Html.ActionLink("Uredi","Update","GeneralInformations",new { id=ViewBag.AllData.Courses.CourseId  })</p>
+<table class="table">
+    <!--Prvi dio dokumenta, sa općim informacijama, informacije od poglavlja 1-->
+    <tr>
+    <th class="col-sm-12" colspan="4"><h3>1.Opće informacije</h3></th>
+    </tr>
+    <tr>
+        <td class="col-md-3"></td>
+        <td class="col-md-6">
+            
+            <table class="table">
+                <tr>
+                    <td class="col-md-4">1.1. Naziv kolegija</td>
+                    <td class="col-md-2">@ViewBag.AllData.Courses.CourseTitle</td>
+                    <td class="col-md-4">1.6. Semestar</td>
+                    <td class="col-md-2">
+                                @ViewBag.AllData.GeneralInformations.Semester
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">1.2. Nositelj kolegija</td>
+                    <td class="col-md-2">@foreach (var item in ViewBag.AllData.LecturersList)
+            {
+                        <p>@item.Lecturer</p>
+                    }</td>
+                    <td class="col-md-4">1.7. Bodovna vrijednost (ECTS)</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.Ects</td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">1.3. Suradnici</td>
+                    <td class="col-md-2">@foreach (var item in ViewBag.AllData.AssistentsList)
+            {
+                        <p>@item.Assistent</p>
+                    }</td>
+                    <td class="col-md-4">1.8. Način izvođenja nastave (broj sati P+V+S+e-učenje)</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.HoursLecture@Html.Raw(" +")
+                    @ViewBag.AllData.GeneralInformations.HoursLab@Html.Raw(" +")
+                    @ViewBag.AllData.GeneralInformations.HoursSeminar</td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">1.4. Studijski program (stručni, specijalistički diplomski stručni studij)</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.CurriculumName</td>
+                    <td class="col-md-4">1.9. Kratica kolegija</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.ShortName</td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">1.5. Status kolegija (O,I)</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.CourseStatus</td>
+                    <td class="col-md-4">1.10. Šifra kolegija</td>
+                    <td class="col-md-2">@ViewBag.AllData.GeneralInformations.CourseCode</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+  
+    <!--Drugi dio dokumenta, sa opisom kolegija, informacije od poglavlja 2-->
+    <tr><th class="col-sm-12" colspan="4"><h3>2.Opis kolegija</h3></th></tr>
+    <tr>
+        <td class="col-sm-3">2.1. Ciljevi kolegija </td>
+        <td class="col-sm-9">@ViewBag.AllData.GeneralInformations.CourseGoals</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">2.2. Uvjeti za polaganje kolegija i ulazne kompetencije koje su potrebne za kolegij, korelativnost i korespodentnost s drugim kolegijima</td>
+        <td class="col-sm-9">@ViewBag.AllData.GeneralInformations.Prerequisites</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">2.3. Očekivani ishodi učenja na razini kolegija (4-10 ishoda učenja) </td>
+        <td class="col-sm-9">@ViewBag.AllData.GeneralInformations.LearningOutcomes</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">2.4. Sadržaj kolegija detaljno razrađen prema satnici nastave (kalendar nastave)</td>
+        <td class="col-sm-9">
+            <table class="table">
+                <tr>
+                    <th class="col-sm-1">Datum</th>
+                    <th class="col-sm-7">Teme i ishodi</th>
+                    <th class="col-sm-1">Satnica</th>
+                </tr>
+                @{ int counter = 1;
+                    foreach (var item in ViewBag.AllData.DetailsList)
+                    {
+                    <tr>
+                        <td class="col-sm-2">@{ 
+                            @counter;counter++;}</td>
+                        <td class="col-sm-2">
+                            <table>
+                                <tr>@item.Description1</tr>
+                                <tr>@item.Description2</tr>
+                                <tr>@item.Description3</tr>
+                            </table>
+                        </td>
+                        <td class="col-sm-2">@item.Hours</td>
+                    </tr>
+                   
+                            }
+                  }
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">2.5. Vrste izvođenja nastave</td>
+        <td class="col-sm-6">
+            <table class="table">
+                <tr>
+                    <td class="col-sm-2">Predavanja
+                    </td>
+                    <td class="col-sm-1">@{bool Lectures = ViewBag.AllData.TypeofClass.Lectures;
+                        @Html.CheckBox("Predavanja", Lectures);}</td>
+                    <td class="col-sm-2">Samostalni zadatci 
+                   
+                    </td>
+                    <td class="col-sm-1">@{bool Homework = ViewBag.AllData.TypeofClass.Homework;
+                        @Html.CheckBox("Samostalni zadatci", Homework);}</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Seminari i radionice 
+                    </td>
+                    <td class="col-sm-1">@{bool Seminars = ViewBag.AllData.TypeofClass.Seminars;
+                        @Html.CheckBox("Seminari i radionice", Seminars);}</td>
+                    <td class="col-sm-2">Multimedija i mreža 
+                    </td>
+                    <td class="col-sm-1">@{bool Multimedia = ViewBag.AllData.TypeofClass.Multimedia;
+                        @Html.CheckBox("Multimedija i mreža", Multimedia);}</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Vježbe </td>
+                    <td class="col-sm-1">@{bool Lab = ViewBag.AllData.TypeofClass.Lab;
+                        @Html.CheckBox("Vježbe", Lab);}</td>
+                    <td class="col-sm-2">Laboratorij </td>
+                    <td class="col-sm-1">@{bool Exercises = ViewBag.AllData.TypeofClass.Exercises;
+                        @Html.CheckBox("Laboratorij", Exercises);}</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Obrazovanje na daljinu </td>
+                    <td class="col-sm-1">@{bool Distance = ViewBag.AllData.TypeofClass.Distance;
+                        @Html.CheckBox("Obrazovanje na daljinu", Distance);}</td>
+                    <td class="col-sm-w">Mentorski rad </td>
+                    <td class="col-sm-1">@{bool Mentoring = ViewBag.AllData.TypeofClass.Mentoring;
+                        @Html.CheckBox("Mentorski rad", Mentoring);}</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Mješovito e-učenje </td>
+                    <td class="col-sm-1">@{bool Mixed = ViewBag.AllData.TypeofClass.Mixed;
+                        @Html.CheckBox("Mješovito e-učenje", Mixed);}</td>
+                    <td class="col-sm-2">Drugo</td>
+                    <td class="col-sm-1">@{bool OtherCheck = ViewBag.AllData.TypeofClass.OtherCheck;
+                        @Html.CheckBox("Drugo", OtherCheck);}</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Terenska nastava </td>
+                    <td class="col-sm-1">@{bool Field = ViewBag.AllData.TypeofClass.Field;
+                        @Html.CheckBox("Terenska nastava", Field);}</td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-1"></td>
+                </tr>
+            </table>
+        </td>
+        </tr>
+    <tr>
+    <td class="col-sm-3">2.6. Komentari:</td>
+    <td class="col-sm-9">@ViewBag.AllData.GeneralInformations.Comments</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">2.7. Obveze studenata</td>
+        <td class="col-sm-9">@ViewBag.AllData.StudentInformations.StudentTasks</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">
+        2.8. Praćenje rada studenata (upisati udio u ECTS bodovima za svaku aktivnost tako da ukupni broj ECTS bodova odgovara bodovnoj vrijednosti kolegija)
+        </td>
+        <td class="col-sm-3">
+            <table class="table">
+                <tr>
+                    <td class="col-sm-2">Pohađanje nastave</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.ClassAttendance</td>
+                    <td class="col-sm-2">Pisani ispit</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.WrittenExam</td>
+                    <td class="col-sm-2">Projekt</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.Project</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Eksperimentalni rad</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.ExperimentalWork</td>
+                    <td class="col-sm-2">Istraživanje</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.Research</td>
+                    <td class="col-sm-2">Praktični rad</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.PracticalWork</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Esej</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.Essay</td>
+                    <td class="col-sm-2">Referat</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.Report</td>
+                    <td class="col-sm-2">Kontinuirana provjera</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.ContinuousAssessment</td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Kolokvij</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.ShortTest</td>
+                    <td class="col-sm-2">Seminarski rad</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.Seminar</td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-1"></td>
+                </tr>
+                <tr>
+                    <td class="col-sm-2">Aktivnost u nastavi</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.ClassActivity</td>
+                    <td class="col-sm-2">Usmeni ispit</td>
+                    <td class="col-sm-1">@ViewBag.AllData.Monitoring.OralExam</td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-1"></td>
+                </tr>
+            </table>
+        </td>
+        
+      
+        
+    </tr>
+    <tr>
+        <td class="col-md-3">2.9 Radno opterećenje studenata</td>
+        <td class="col-md-9">@ViewBag.AllData.StudentInformations.Workload</td>
+    </tr>
+    <tr>
+        <td class="col-md-3">2.10. Ocjenjivanje i vrjednovanje rada studenata tijekom nastave i na završnom ispitu</td>
+        <td class="col-md-9">@ViewBag.AllData.StudentInformations.GradingEvaluating</td>
+    </tr>
+    <tr>
+        <td class="col-md-3">2.11. Obvezna literatura (OL u kalendaru nastave)</td>
+        <td class="col-md-9">
+            <table>
+                <tr>
+                    <th class="col-md-1">Red.br.</th>
+                    <th class="col-md-8">Naziv</th>
+                </tr>
+                <tr>
+                    <td class="col-md-1">1</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Required1</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">2</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Required2</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">3</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Required3</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">4</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Required4</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">5</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Required5</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="col-md-3">2.12. Dopunska literatura (DL u kalendaru nastave)</td>
+        <td class="col-md-9">
+            <table>
+                <tr>
+                    <th class="col-md-1">Red.br.</th>
+                    <th class="col-md-8">Naziv</th>
+                </tr>
+                <tr>
+                    <td class="col-md-1">1</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Recommended1</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">2</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Recommended2</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">3</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Recommended3</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">4</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Recommended4</td>
+                </tr>
+                <tr>
+                    <td class="col-md-1">5</td>
+                    <td class="col-md-8">@ViewBag.AllData.StudentInformations.Recommended5</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!--Treći dio dokumenta sa dodatnim informacijama o kolegiju-->
+    <tr><th class="col-sm-12" colspan="4"><h3>3.Dodatne informacije o kolegiju</h3></th></tr>
+    <tr>
+        <td class="col-sm-3">3.1. Pohađanje nastave</td>
+        <td class="col-sm-9">@ViewBag.AllData.AdditionalInformations.Attendance</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">3.2. Kontaktiranje s nastavnikom</td>
+        <td class="col-sm-9">@ViewBag.AllData.AdditionalInformations.ContactingTeacher</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">3.3. Informiranje o kolegiju</td>
+        <td class="col-sm-9">@ViewBag.AllData.AdditionalInformations.ClassInformation</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">3.4. Pisani radovi</td>
+        <td class="col-sm-9">@ViewBag.AllData.AdditionalInformations.WrittenWork</td>
+    </tr>
+    <tr>
+        <td class="col-sm-3">3.5. Ostalo</td>
+        <td class="col-sm-9">@ViewBag.AllData.AdditionalInformations.Other</td>
+    </tr>
+</table>
+
+
+
+
+

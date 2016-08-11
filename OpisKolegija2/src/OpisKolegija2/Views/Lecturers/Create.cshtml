@@ -1,0 +1,25 @@
+﻿@model OpisKolegija2.Models.Lecturers
+
+@{
+    ViewBag.Title = "New Lecturer";
+}
+
+<h2>@ViewData["Lecturer"]</h2>
+
+<form asp-controller="Lecturers" asp-action="Create" method="post" class="form-horizontal" role="form">
+    <div class="form-horizontal">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Lecturer" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Lecturer" class="form-control" />
+                <span asp-validation-for="Lecturer" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
